@@ -2,24 +2,19 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { LayoutContainer } from "./Layout/LayoutContainer";
+import { Route, Routes } from "react-router-dom";
+import { HomeContainer } from "./pages/Home/HomeContainer";
+import { CategoryContainer } from "./pages/Category/CategoryContainer";
+import { LoginRegisterContainer } from "./pages/LoginRegister/LoginRegisterContainer";
 
 function App() {
   return (
     <LayoutContainer>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<HomeContainer />} />
+        <Route path="/category" element={<CategoryContainer />} />
+        <Route path="/login" element={<LoginRegisterContainer />} />
+      </Routes>
     </LayoutContainer>
   );
 }

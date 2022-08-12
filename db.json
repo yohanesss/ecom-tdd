@@ -1,4 +1,15 @@
 {
+  "users": [],
+  "category": [
+    {
+      "id": "programming",
+      "name": "programming"
+    },
+    {
+      "id": "math",
+      "name": "math"
+    }
+  ],
   "posts": [
     {
       "id": 1,
