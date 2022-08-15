@@ -9,6 +9,16 @@
       "email": "321213@gmail.com",
       "password": "$2a$10$R9GYaOnRnKMDPhhaifwj7efiQbsZQ3aDyqDHhWViit8anjxNPLEfC",
       "id": 2
+    },
+    {
+      "email": "test27c@gmail.com",
+      "password": "$2a$10$9h8TW04kmdzEc0cDp5vQq.e0UVOZElzgvBDJIhtSM0ngIBvashO.a",
+      "id": 3
+    },
+    {
+      "email": "test27c@gmail.coms",
+      "password": "$2a$10$ieEbvN1e7YIsjCt3zA//X.FQArYnW3Z2eCIHcjKt47BW4cDG2Or5.",
+      "id": 4
     }
   ],
   "category": [

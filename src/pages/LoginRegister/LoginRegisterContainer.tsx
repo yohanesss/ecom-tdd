@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+
 import { useLocalStorage } from "../../hooks/useStorage";
+
+const INITIAL_FORM = { email: "", password: "" };
 
 export const LoginRegisterContainer = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState(INITIAL_FORM);
   const [formError, setFormError] = useState<null | string>(null);
 
   const [user, setUser] = useLocalStorage("user", null);
@@ -32,17 +37,28 @@ export const LoginRegisterContainer = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const postForm = await fetch("http://localhost:3001/register", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-type": "application/json",
-      },
-    });
+    const postForm = await fetch(
+      `http://localhost:3001/${isLogin ? "login" : "register"}`,
+      {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
 
     if (postForm.ok) {
       setFormError(null);
-      setUser(await postForm.json());
+
+      if (isLogin) {
+        setUser(await postForm.json());
+        <Navigate to="/" />;
+      } else {
+        setFormData(INITIAL_FORM);
+        setIsLogin(true);
+        toast("You have successfully register, please login");
+      }
     } else {
       setFormError(await postForm.json());
     }
@@ -69,11 +85,14 @@ export const LoginRegisterContainer = () => {
   );
 
   return (
-    <div>
-      <h1>{isLogin ? "Login" : "Register"}</h1>
-      {renderForm}
-      {formError && <p style={{ color: "red" }}>{formError}</p>}
-      {renderLoginNav}
-    </div>
+    <>
+      <div>
+        <h1>{isLogin ? "Login" : "Register"}</h1>
+        {renderForm}
+        {formError && <p style={{ color: "red" }}>{formError}</p>}
+        {renderLoginNav}
+      </div>
+      <Toaster />
+    </>
   );
 };
