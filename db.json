@@ -1,5 +1,16 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "312321@asdf.com",
+      "password": "$2a$10$H04ZSK1kRJS.w0WgXw9hCeE3C.azjV0zW7nhW8wHopoOGC/GSkTZq",
+      "id": 1
+    },
+    {
+      "email": "321213@gmail.com",
+      "password": "$2a$10$R9GYaOnRnKMDPhhaifwj7efiQbsZQ3aDyqDHhWViit8anjxNPLEfC",
+      "id": 2
+    }
+  ],
   "category": [
     {
       "id": "programming",

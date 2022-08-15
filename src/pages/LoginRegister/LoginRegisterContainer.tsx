@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useLocalStorage } from "../../hooks/useStorage";
 
 export const LoginRegisterContainer = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formError, setFormError] = useState<null | string>(null);
+
+  const [user, setUser] = useLocalStorage("user", null);
 
   const renderLoginNav = isLogin ? (
     <p>
@@ -36,8 +40,12 @@ export const LoginRegisterContainer = () => {
       },
     });
 
-    const response = await postForm.json();
-    console.log(response);
+    if (postForm.ok) {
+      setFormError(null);
+      setUser(await postForm.json());
+    } else {
+      setFormError(await postForm.json());
+    }
   };
 
   const renderForm = (
@@ -64,6 +72,7 @@ export const LoginRegisterContainer = () => {
     <div>
       <h1>{isLogin ? "Login" : "Register"}</h1>
       {renderForm}
+      {formError && <p style={{ color: "red" }}>{formError}</p>}
       {renderLoginNav}
     </div>
   );
