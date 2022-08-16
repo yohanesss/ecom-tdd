@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 import { User } from "../Interfaces";
 import { useLocalStorage } from "./useStorage";
 
-const AuthContext = createContext<
+export const AuthContext = createContext<
   [User | undefined, React.Dispatch<React.SetStateAction<User | undefined>>]
 >([undefined, () => {}]);
 

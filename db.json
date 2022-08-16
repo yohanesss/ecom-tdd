@@ -19,6 +19,11 @@
       "email": "test27c@gmail.coms",
       "password": "$2a$10$ieEbvN1e7YIsjCt3zA//X.FQArYnW3Z2eCIHcjKt47BW4cDG2Or5.",
       "id": 4
+    },
+    {
+      "email": "123@123.com",
+      "password": "$2a$10$ZXKVqLRlQBEPvv1GvuHUGeATY.MTKP3gWFykcxrF0TqqT7SnAUxMW",
+      "id": 5
     }
   ],
   "category": [

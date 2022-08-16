@@ -8,6 +8,7 @@ const INITIAL_FORM = { email: "", password: "" };
 
 export const LoginRegisterContainer = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState(INITIAL_FORM);
   const [formError, setFormError] = useState<null | string>(null);
 
@@ -33,6 +34,11 @@ export const LoginRegisterContainer = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handlePeekPassword = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setShowPassword((showPassword) => !showPassword);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -66,20 +72,27 @@ export const LoginRegisterContainer = () => {
 
   const renderForm = (
     <form onSubmit={(e) => handleSubmit(e)}>
-      <label htmlFor="email">Email</label>
-      <input
-        name="email"
-        type={"text"}
-        placeholder="email"
-        onChange={handleChange}
-      />
-      <label htmlFor="password">Password</label>
-      <input
-        name="password"
-        type={"password"}
-        placeholder="password"
-        onChange={handleChange}
-      />
+      <div>
+        <label htmlFor="email">Email</label>
+        <input
+          name="email"
+          type={"text"}
+          placeholder="email"
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="password">Password</label>
+        <input
+          name="password"
+          type={showPassword ? "text" : "password"}
+          placeholder="password"
+          onChange={handleChange}
+        />
+        <button name="toggle-password-visibility" onClick={handlePeekPassword}>
+          Peek Password
+        </button>
+      </div>
       <button type={"submit"}>Submit</button>
     </form>
   );
